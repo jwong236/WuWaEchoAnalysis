@@ -1,24 +1,22 @@
-from flask import Flask, request, jsonify
-import psycopg2
+from flask import Flask, jsonify, send_from_directory
 import os
 
 app = Flask(__name__, static_folder="dist")
 
-# DB_NAME = os.getenv("DB_NAME", "yourdbname")
-# DB_USER = os.getenv("DB_USER", "youruser")
-# DB_PASSWORD = os.getenv("DB_PASSWORD", "yourpassword")
-# DB_HOST = os.getenv("DB_HOST", "localhost")
 
-# conn = psycopg2.connect(
-#     dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, host=DB_HOST
-# )
-# cursor = conn.cursor()
+@app.route("/api/data", methods=["GET"])
+def get_data():
+    return jsonify({"message": "Hello from Flask!"})
 
 
-@app.route("/")
-def hello_world():
-    return "Hello, World!"
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
