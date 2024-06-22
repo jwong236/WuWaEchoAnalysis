@@ -3,6 +3,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import theme from "./theme";
 import Homepage from "./pages/Homepage";
+import Testpage from "./pages/Testpage";
 
 function App() {
   return (
@@ -10,6 +11,8 @@ function App() {
       <CssBaseline />
       <Routes>
         <Route path="/" element={<Homepage />} />
+        <Route path="/homepage" element={<Homepage />} />
+        <Route path="/testpage" element={<Testpage />} />
       </Routes>
     </ThemeProvider>
   );
