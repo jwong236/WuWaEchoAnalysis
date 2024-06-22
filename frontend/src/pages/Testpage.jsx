@@ -1,4 +1,3 @@
-// src/pages/Testpage.jsx
 import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
