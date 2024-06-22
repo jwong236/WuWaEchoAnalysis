@@ -65,3 +65,6 @@ jspm_packages/
 
 # Python Cache
 __pycache__/
+
+# Bash scripts
+deploy.sh
