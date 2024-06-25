@@ -27,8 +27,76 @@ def ping():
     return jsonify({"response": "pong"})
 
 
-@echos_bp.route("/read", methods=["GET"])
-def read():
+@echos_bp.route("/analyze", methods=["GET"])
+def analyze():
+    echo_id = request.args.get("echo_id")
+
+    if echo_id is None:
+        return jsonify({"error": "echo_id is required"}), 400
+
+    try:
+        echo_id = int(echo_id)
+    except ValueError:
+        return jsonify({"error": "Invalid echo_id format"}), 400
+
+    if not os.path.exists(echos_csv_path):
+        return jsonify({"error": "Echo data file not found"}), 404
+
+    echo = find_echo_by_id(echo_id)
+    if echo is None:
+        return jsonify({"error": "Echo not found"}), 404
+
+    sub_stats = echo["sub_stats"]
+    stats_quality = dict()
+    for sub_stat_index, sub_stat_value in sub_stats.items():
+        stats_quality[sub_stat_index] = round(
+            sub_stat_value
+            / (SUB_STAT_RANGES[sub_stat_index][0] + SUB_STAT_RANGES[sub_stat_index][1]),
+            4,
+        )
+    quality_score = round(sum(stats_quality.values()) / len(stats_quality), 4)
+    return jsonify({"stats_quality": stats_quality, "quality_score": quality_score})
+
+
+@echos_bp.route("/get_echo", methods=["GET"])
+def get_echo():
+    echo_id = request.args.get("echo_id")
+
+    if echo_id is None:
+        return jsonify({"error": "echo_id is required"}), 400
+
+    try:
+        echo_id = int(echo_id)
+    except ValueError:
+        return jsonify({"error": "Invalid echo_id format"}), 400
+
+    if not os.path.exists(echos_csv_path):
+        return jsonify({"error": "Echo data file not found"}), 404
+
+    echo = find_echo_by_id(echo_id)
+    if echo is None:
+        return jsonify({"error": "Echo not found"}), 404
+
+    return jsonify({"echo": echo, "echo_id": echo_id})
+
+
+def find_echo_by_id(echo_id):
+    with open(echos_csv_path, mode="r") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if int(row["echo_id"]) == echo_id:
+                echo = {
+                    "echo_id": row["echo_id"],
+                    "cost": row["cost"],
+                    "main_stat": json.loads(row["main_stat"]),
+                    "sub_stats": json.loads(row["sub_stats"]),
+                }
+                return echo
+    return None
+
+
+@echos_bp.route("/user_echos", methods=["GET"])
+def user_echos():
     user_id = request.args.get("user_id")
     if user_id is None:
         return jsonify({"error": "user_id is required"}), 400
