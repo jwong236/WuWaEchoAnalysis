@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask
 from flask_cors import CORS
 import os
 from routes import register_blueprints
