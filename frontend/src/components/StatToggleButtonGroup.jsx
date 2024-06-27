@@ -10,7 +10,7 @@ import {
   InputLabel,
 } from "@mui/material";
 
-const MainStatList = () => {
+const StatToggleButtonGroup = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [mainStat, setMainStat] = useState("");
 
@@ -46,10 +46,10 @@ const MainStatList = () => {
       </Box>
 
       {Array.from({ length: 13 }, (_, index) => (
-        <Box key={index}>
+        <Box key={index} mb={2}>
           <Button
-            variant="contained"
-            color="primary"
+            variant="statToggleButton"
+            className={activeIndex === index ? "Mui-selected" : ""}
             onClick={() => handleToggle(index)}
           >
             Toggle Button {index + 1}
@@ -63,4 +63,4 @@ const MainStatList = () => {
   );
 };
 
-export default MainStatList;
+export default StatToggleButtonGroup;

@@ -1,11 +1,13 @@
 import React from "react";
 import flautist_image from "./../assets/flautist_icon.png";
-import { Box, Button, Typography } from "@mui/material";
-import MainStatList from "../components/MainStatList";
+import { Box, Button, Typography, useTheme } from "@mui/material";
+import StatToggleButtonGroup from "../components/StatToggleButtonGroup";
 import QualityScore from "../components/QualityScore";
 import ResonatorMatchingScore from "../components/ResonatorMatchingScore";
+import CostButtonGroup from "../components/CostButtonGroup";
 
-function Homepage() {
+function EchoAnalyzerPage() {
+  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -87,18 +89,11 @@ function Homepage() {
           margin: "1rem 0",
         }}
       >
-        <Button variant="contained" color="primary">
-          Common (1 cost)
-        </Button>
-        <Button variant="contained" color="primary">
-          Elite (3 cost)
-        </Button>
-        <Button variant="contained" color="primary">
-          Overlord & Calamity (4 cost)
-        </Button>
+        <CostButtonGroup />
       </Box>
       <Box sx={{ display: "flex", flexDirection: "row", width: "100%" }}>
-        <MainStatList />
+        <StatToggleButtonGroup />
+
         <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
           <QualityScore />
           <ResonatorMatchingScore />
@@ -108,4 +103,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default EchoAnalyzerPage;

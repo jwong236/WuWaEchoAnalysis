@@ -16,29 +16,21 @@ const ResonatorMatchingScore = () => {
     {
       formula: "Calculation Formula 1",
       value: "834.3",
-      unit: "DPS",
-      score: "Match Score 1",
       percentage: "90%",
     },
     {
       formula: "Calculation Formula 2",
       value: "834.3",
-      unit: "DPS",
-      score: "Match Score 2",
       percentage: "90%",
     },
     {
       formula: "Calculation Formula 3",
       value: "834.3",
-      unit: "DPS",
-      score: "Match Score 3",
       percentage: "90%",
     },
     {
       formula: "Calculation Formula 4",
       value: "834.3",
-      unit: "DPS",
-      score: "Match Score 4",
       percentage: "90%",
     },
   ];
