@@ -36,7 +36,7 @@ const ResonatorMatchingScore = () => {
   ];
 
   return (
-    <Box sx={{ padding: "2rem" }}>
+    <Box sx={{ padding: "2rem", backgroundColor: "background.paper" }}>
       <Typography variant="h4" align="center" gutterBottom>
         Resonator Matching Score
       </Typography>

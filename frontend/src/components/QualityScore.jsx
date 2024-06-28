@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Button, Box } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 
 const QualityScore = () => {
   return (
@@ -8,20 +8,24 @@ const QualityScore = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: "2rem",
+        padding: "1rem",
+        backgroundColor: "background.paper",
+        position: "relative",
       }}
     >
       <Typography variant="h4" align="center">
         Quality Score
       </Typography>
-      <Typography variant="h2" align="center" sx={{ margin: "1rem 0" }}>
+      <Typography variant="h1" align="center">
         75%
       </Typography>
       <Box
         sx={{
+          position: "absolute",
+          bottom: "1rem",
+          right: "1rem",
           display: "flex",
           justifyContent: "flex-end",
-          width: "100%",
           gap: "1rem",
           marginTop: "1rem",
         }}
@@ -29,7 +33,7 @@ const QualityScore = () => {
         <Button variant="contained" color="primary">
           Calculate
         </Button>
-        <Button variant="contained" color="secondary">
+        <Button variant="contained" color="primary">
           Save
         </Button>
       </Box>

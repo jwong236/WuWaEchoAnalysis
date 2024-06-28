@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, ToggleButton } from "@mui/material";
 
 const CostButtonGroup = () => {
   const [selectedButton, setSelectedButton] = useState(null);
@@ -15,14 +15,14 @@ const CostButtonGroup = () => {
         "Elite (3 cost)",
         "Overlord & Calamity (4 cost)",
       ].map((label, index) => (
-        <Button
+        <ToggleButton
           key={index}
-          variant="costToggleButton"
-          className={selectedButton === index ? "Mui-selected" : ""}
+          value={index}
+          selected={selectedButton === index}
           onClick={() => handleToggle(index)}
         >
           {label}
-        </Button>
+        </ToggleButton>
       ))}
     </Box>
   );
