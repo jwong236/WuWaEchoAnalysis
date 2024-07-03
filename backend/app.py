@@ -2,6 +2,9 @@ from flask import Flask
 from flask_cors import CORS
 import os
 from routes import register_blueprints
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__, static_folder="dist")
 CORS(app)

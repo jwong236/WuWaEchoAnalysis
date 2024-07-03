@@ -17,7 +17,7 @@ const STAT_OPTIONS = [
   "Resonance Liberation DMG Bonus",
 ];
 
-const MainStatSelect = ({ mainStat, handleMainStatChange }) => {
+const MainStatSelect = ({ cost, mainStat, handleMainStatChange }) => {
   return (
     <Box sx={{ display: "flex", alignItems: "center", width: "100%", mb: 2 }}>
       <Typography variant="h6" sx={{ mr: 2, whiteSpace: "nowrap" }}>

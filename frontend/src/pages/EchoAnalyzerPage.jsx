@@ -8,10 +8,12 @@ import CostButtonGroup from "../components/CostButtonGroup";
 import MainStatSelect from "../components/MainStatSelect";
 
 function EchoAnalyzerPage() {
-  const [mainStat, setMainStat] = useState("");
+  const [mainStat, setMainStat] = useState("ATK");
+  const [cost, setCost] = useState(1);
   const handleMainStatChange = (event) => {
     setMainStat(event.target.value);
   };
+
   return (
     <Box
       sx={{
@@ -50,11 +52,7 @@ function EchoAnalyzerPage() {
           justifyContent: "center",
         }}
       >
-        Wuthering Waves paragraph here paragraph here paragraph here paragraph
-        here paragraph here paragraph here paragraph here paragraph here
-        paragraph here paragraph here paragraph here paragraph here paragraph
-        here paragraph here paragraph here paragraph here paragraph here
-        paragraph here paragraph here
+        test
       </Box>
       <Box
         sx={{
@@ -87,6 +85,7 @@ function EchoAnalyzerPage() {
         <CostButtonGroup />
       </Box>
       <MainStatSelect
+        cost={cost}
         mainStat={mainStat}
         handleMainStatChange={handleMainStatChange}
       />

@@ -2,24 +2,25 @@ from flask import Blueprint, request, jsonify
 import csv
 import os
 import json
-from config import (
-    ONE_COST_MAIN_STAT_MAP,
-    THREE_COST_MAIN_STAT_MAP,
-    FOUR_COST_MAIN_STAT_MAP,
-    ONE_COST_MAIN_STAT_VALUE,
-    THREE_COST_MAIN_STAT_VALUE,
-    FOUR_COST_MAIN_STAT_VALUE,
-    SUB_STAT_MAP,
-    SUB_STAT_RANGES,
-)
 
+# Define blueprints with prefix /echos
 echos_bp = Blueprint("echos", __name__)
 
+# Create a directory to store the CSV file if it doesn't exist
 directory = "db"
 if not os.path.exists(directory):
     os.makedirs(directory)
-
 echos_csv_path = os.path.join(directory, "echos.csv")
+
+# Load environment variables
+ONE_COST_MAIN_STAT_MAP = json.loads(os.getenv("ONE_COST_MAIN_STAT_MAP"))
+THREE_COST_MAIN_STAT_MAP = json.loads(os.getenv("THREE_COST_MAIN_STAT_MAP"))
+FOUR_COST_MAIN_STAT_MAP = json.loads(os.getenv("FOUR_COST_MAIN_STAT_MAP"))
+ONE_COST_MAIN_STAT_VALUE = json.loads(os.getenv("ONE_COST_MAIN_STAT_VALUE"))
+THREE_COST_MAIN_STAT_VALUE = json.loads(os.getenv("THREE_COST_MAIN_STAT_VALUE"))
+FOUR_COST_MAIN_STAT_VALUE = json.loads(os.getenv("FOUR_COST_MAIN_STAT_VALUE"))
+SUB_STAT_MAP = json.loads(os.getenv("SUB_STAT_MAP"))
+SUB_STAT_RANGES = json.loads(os.getenv("SUB_STAT_RANGES"))
 
 
 @echos_bp.route("/ping", methods=["GET"])
